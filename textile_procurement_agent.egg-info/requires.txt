@@ -1,0 +1,12 @@
+alembic<2,>=1.13
+asyncpg<1,>=0.29
+fastapi<1,>=0.115
+httpx<1,>=0.27
+langgraph<2,>=0.2
+langgraph-checkpoint-postgres<4,>=2
+openpyxl<4,>=3.1
+psycopg[binary,pool]<4,>=3.2
+pydantic-settings<3,>=2.5
+python-multipart<1,>=0.0.9
+sqlalchemy[asyncio]<3,>=2.0
+uvicorn[standard]<1,>=0.30
