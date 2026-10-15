@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KYood | Test WhatsApp chat</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <aside>
+      <h1>KYood <span>Test chat</span></h1>
+      <p>Simulate buyer WhatsApp messages against your local procurement app.</p>
+      <div class="warning">
+        Testing only. Messages create real records in the connected database.
+        Use <strong>MESSAGING_PROVIDER=mock</strong> on the API/worker.
+        This screen cannot override a live WhatsApp provider.
+      </div>
+      <label>Buyer name<input id="name" value="Maya Retail" maxlength="200"></label>
+      <label>Buyer phone<input id="phone" value="+911111110001" autocomplete="off"></label>
+      <p class="hint">Use a buyer number, not a registered supplier number.</p>
+      <label>Request ID<input id="request-id" placeholder="Assigned after sending, or paste an existing ID"></label>
+      <div class="actions">
+        <button id="load" type="button">Load / refresh</button>
+        <button id="reset" type="button">New buyer</button>
+      </div>
+      <p id="backend" class="hint"></p>
+      <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open operator dashboard &rarr;</a>
+      <h2>Workflow</h2>
+      <p id="status" role="status">Send a requirement to start.</p>
+      <pre id="requirement">No extracted requirement yet.</pre>
+      <div id="approvals"></div>
+      <p class="hint">
+        Approvals stay in the operator dashboard. No automatic supplier replies,
+        invented quotes, or approval bypasses are added by this UI.
+      </p>
+    </aside>
+    <section class="chat" aria-label="Mock WhatsApp conversation">
+      <header>
+        <div class="avatar">K</div>
+        <div><h2>KYood sourcing assistant</h2><p>Local WhatsApp simulator &middot; polls every 3 seconds</p></div>
+        <span class="badge">TEST</span>
+      </header>
+      <div class="notice">
+        Chat bubbles show persisted messages only. Workflow notices are shown separately.
+      </div>
+      <div id="messages" role="log" aria-live="polite">
+        <p class="empty">Send a textile requirement below. No Meta account or tunnel needed.</p>
+      </div>
+      <div id="error" role="alert" hidden></div>
+      <form id="composer">
+        <label class="acknowledgement"><input id="ack" type="checkbox" required>
+          I am using a test backend and understand that live providers may send real messages.
+        </label>
+        <div class="attachments">
+          <label>Image (optional, max 5 MB)<input id="image" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <label>Or HTTPS image URL<input id="image-url" type="url" placeholder="https://..."></label>
+          <button id="clear-image" type="button">Clear image</button>
+        </div>
+        <p id="attachment" class="hint"></p>
+        <label for="text">Your message</label>
+        <div class="compose-row">
+          <textarea id="text" rows="3" maxlength="10000" placeholder="Need 100 cotton ladies suits around INR 500-600. Delivery to Jaipur."></textarea>
+          <button id="send" type="submit">Send</button>
+        </div>
+        <p class="hint">Enter to send &middot; Shift+Enter for a new line. Keep the API and worker running.</p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

@@ -33,3 +33,10 @@ The unit/API/integration suite uses async SQLite and mocked external providers. 
 ## API-Only
 
 Set `DATABASE_URL` to a reachable PostgreSQL database, run `uv run alembic upgrade head`, then `uv run uvicorn app.main:app --reload`. Start the console separately from `frontend/` with `npm run dev`.
+
+## Optional WhatsApp Test Chat
+
+For a separate local buyer-chat simulator, see [chatUI setup](../chatUI/README.md).
+It runs independently, requires no extra packages, and uses the existing webhook
+and authenticated request APIs. Keep `MESSAGING_PROVIDER=mock` on your test backend;
+the simulator does not override live messaging or bypass human approvals.
