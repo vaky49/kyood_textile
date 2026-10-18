@@ -61,8 +61,11 @@ test server to a network or deploy it as a buyer application.
 
 ## Try the workflow
 
-1. Keep the default fictional seeded buyer, or click **New buyer** for a fresh
-   fictional identity. Do not use a registered supplier's number.
+1. Keep the default fictional test buyer (separate from seeded demo buyers), or
+   click **New buyer** for a fresh fictional identity. Do not use a registered
+   supplier's number. The seeded number `+911111110001` already has a request
+   awaiting a buyer decision; messages from it update that request rather than
+   creating a new Requests row.
 2. Check the test-backend acknowledgement.
 3. Send: `Need 100 cotton ladies suits around INR 500-600. Delivery to Jaipur.`
 4. The server posts a normalized incoming message to `POST /webhooks/whatsapp`.
@@ -78,6 +81,21 @@ test server to a network or deploy it as a buyer application.
    provider). Mock transport does not generate supplier quotes automatically.
 8. Once a comparison is ready and the request is `AWAITING_BUYER_DECISION`, send
    the selection/negotiation reply using the same buyer identity.
+
+### Finding a chat message in the operator dashboard
+
+The Requests list refreshes every five seconds while visible and when you return
+to its tab. Clear the status filter to **All statuses** and search for the request
+ID shown by Chat UI (the table displays its first eight characters). Messages
+that update an existing buyer-decision request do not create another row; search
+for that same ID and open the existing request. If no request ID appears in Chat UI,
+check its error banner rather than assuming the message was accepted.
+
+Both UIs must use the same API instance. Chat UI displays its target under the
+buyer controls (`CHATUI_API_URL`, default `http://127.0.0.1:8000`). The operator
+frontend uses `NEXT_PUBLIC_API_BASE_URL` (default `http://localhost:8000`).
+If you override either, keep them pointed at the same backend and restart the
+relevant development server. Confirm both use the correct operator token.
 
 After a reload, paste a request ID from the dashboard, enter its buyer phone,
 and click **Load / refresh**. History comes from the application's database, not

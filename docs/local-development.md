@@ -40,3 +40,9 @@ For a separate local buyer-chat simulator, see [chatUI setup](../chatUI/README.m
 It runs independently, requires no extra packages, and uses the existing webhook
 and authenticated request APIs. Keep `MESSAGING_PROVIDER=mock` on your test backend;
 the simulator does not override live messaging or bypass human approvals.
+
+The operator Overview, Requests, RFQs, and Approvals lists refresh every five
+seconds while visible, and when the tab regains focus. If a Chat UI request is
+not visible, clear request search/status filters and search by the ID shown in
+Chat UI. A message from a buyer awaiting a decision updates their existing request;
+click **New buyer** in Chat UI to test a separate buyer request.
